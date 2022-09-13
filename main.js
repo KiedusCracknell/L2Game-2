@@ -12,5 +12,6 @@ let gamespeed = 2; //speed at which the obstacles, background etc. move at, can 
 
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(10, 10, 50, 50);
     requestAnimationFrame(animate);
 } //clears canvas at end of every frame, recurs by calling itself at end of the function
