@@ -13,10 +13,12 @@ class Bird {
             this.vy = 0;
         } else { //stops the player from falling through the bottom of the canvas 
             this.vy += this.weight; //increases y velocity by weight at every frame
+            this.vy * 0.9; //slow down velocity
             this.y += this.vy; //increases y position by y velocity at every frame
         }
         if (this.y < 0 + this.height) {
             this.y = 0 + this.height;
+            this.vy = 0;
         }
         if (spacePressed) this.flap();
     } //calculate position and velocity of player character at every 
