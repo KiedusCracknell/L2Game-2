@@ -12,20 +12,16 @@ let gamespeed = 2; //speed at which the obstacles, background etc. move at, can 
 
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillRect(10, 200, 50, 50);
+    ctx.fillRect(10, 10, 50, 50);
     requestAnimationFrame(animate);
 } //clears canvas at end of every frame, recurs by calling itself at end of the function
 
 animate();
 
 window.addEventListener('keydown', function (e) {
-    if (e.code === 'Space') {
-        spacePressed = true;
-    }
+    if (e.code === 'Space'){ spacePressed = true}
 });
 
 window.addEventListener('keyup', function (e) {
-    if (e.code === 'Space') {
-        spacePressed = false;
-    }
+    if (e.code === 'Space') spacePressed = false;
 });
