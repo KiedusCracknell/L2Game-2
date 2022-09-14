@@ -17,3 +17,7 @@ function animate() {
 } //clears canvas at end of every frame, recurs by calling itself at end of the function
 
 animate();
+
+window.addEventListener('keydown', function(e){
+    console.log(e.code);
+})
