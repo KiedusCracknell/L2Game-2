@@ -8,8 +8,9 @@ class Bird {
         this.weight = 1; //force that pulls player down when player isn't 'flapping'
     }
     update() {
-        if (this.y > canvas.height - (this.height * 2)) {
-            this.y = canvas.height - (this.height * 2);
+        let curve = Math.sin(angle);
+        if (this.y > canvas.height - (this.height * 2) + curve) {
+            this.y = canvas.height - (this.height * 2) + curve;
             this.vy = 0;
         } else { //stops the player from falling through the bottom of the canvas 
             this.vy += this.weight; //increases y velocity by weight at every frame
@@ -17,9 +18,9 @@ class Bird {
             this.y += this.vy; //increases y position by y velocity at every frame
         }
         if (this.y < 0 + this.height) {
-            this.y = 0 + this.height;
+            this.y = 0 + this.height + curve;
             this.vy = 0;
-        }
+        } //stops player from flying through the top of the canvas
         if (spacePressed) this.flap();
     } //calculate position and velocity of player character at every 
     draw() {
