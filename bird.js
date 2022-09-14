@@ -8,6 +8,7 @@ class Bird {
         this.weight = 1;//force that pulls player down when player isn't 'flapping'
     }
     update(){
-        
+      this.vy += this.weight;//increases y velocity by weight at every frame
+      this.y += this.vy;//increases y position by y velocity at every frame
     }//calculate position and velocity of player character at every frame
 }
