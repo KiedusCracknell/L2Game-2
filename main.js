@@ -16,12 +16,15 @@ function animate() {
     bird.update();
     bird.draw();
     requestAnimationFrame(animate);
+    angle+= 0.12;
 } //clears canvas at end of every frame, recurs by calling itself at end of the function
 
 animate();
 
 window.addEventListener('keydown', function (e) {
-    if (e.code === 'Space'){ spacePressed = true}
+    if (e.code === 'Space') {
+        spacePressed = true
+    }
 });
 
 window.addEventListener('keyup', function (e) {
