@@ -12,5 +12,10 @@ class Particle {
         this.x -= gamespeed;// moves the particles to the left as the game scrolls
         this.y += this.speedY;// moves the particles up and down slightly and spead due to speedY being random
     }
-    
+    draw() {
+        ctx.fillStyle = this.color;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI *2);
+        ctx.fill();
+    }
 }
