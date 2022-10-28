@@ -18,6 +18,7 @@ function animate() {
     requestAnimationFrame(animate);
     angle += 0.12;
     handleParticles();
+    hue++;
 } //clears canvas at end of every frame, recurs by calling itself at end of the function
 
 animate();
