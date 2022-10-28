@@ -16,7 +16,7 @@ function animate() {
     bird.update();
     bird.draw();
     requestAnimationFrame(animate);
-    angle += 0.12;
+    angle += 0.2;
     handleParticles();
     hue++;
 } //clears canvas at end of every frame, recurs by calling itself at end of the function
