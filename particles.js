@@ -28,7 +28,7 @@ function handleParticles(){
     }
     //if length is more than 200, remove 20
     if (particlesArray.length > 200) {
-       for (let i = 0; 1 < 20; i++) {
+       for (let i = 0; i < 20; i++) {
         particlesArray.pop(particlesArray[i]);
        }
     }
