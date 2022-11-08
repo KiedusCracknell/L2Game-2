@@ -19,6 +19,7 @@ function animate() {
     angle += 0.2;
     handleParticles();
     hue++;
+    reload();
 } //clears canvas at end of every frame, recurs by calling itself at end of the function
 
 animate();
@@ -32,3 +33,7 @@ window.addEventListener('keydown', function (e) {
 window.addEventListener('keyup', function (e) {
     if (e.code === 'Space') spacePressed = false;
 });
+
+function hi(){
+    alert('hi')
+}
