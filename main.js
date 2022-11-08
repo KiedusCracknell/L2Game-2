@@ -18,6 +18,7 @@ function animate() {
     bird.draw();
     handleParticles();
     handleCollisions();
+    if (handleCollisions()) return;
     requestAnimationFrame(animate);
     angle += 0.2;
     hue++;
