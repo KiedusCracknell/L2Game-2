@@ -16,9 +16,10 @@ function animate() {
     handleObstacles();
     bird.update();
     bird.draw();
+    handleParticles();
+    handleCollisions();
     requestAnimationFrame(animate);
     angle += 0.2;
-    handleParticles();
     hue++;
     frame++
 } //clears canvas at end of every frame, recurs by calling itself at end of the function
@@ -45,7 +46,8 @@ function handleCollisions() {
             ((bird.y < 0 + obstaclesArray[i].top && bird.y + bird.height > 0) ||
                 (bird.y > canvas.height - obstaclesArray[i].bottom &&
                     bird.y + bird.height < canvas.height))) { //collision detection
-
+                        ctx.drawImage(bang, bird.x, bird.y, 50, 50)
+                        return true;
                     }
     }
 }
