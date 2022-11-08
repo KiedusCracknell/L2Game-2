@@ -13,4 +13,8 @@ class Obstacle {
         ctx.fillRect(this.x, 0, this.width, this.top); // draws the top obstacles
         ctx.fillRect(this.x, canvas.height - this.bottom, this.width, this.bottom); // draws the bottom obstacles   
     }
+    update(){
+        this.x -= gamespeed; //moves the obstacles to the left, dependent on gamespeed
+        this.draw();
+    }
 }
