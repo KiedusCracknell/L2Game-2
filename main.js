@@ -7,7 +7,7 @@ let spacePressed = false; //true if space is pressed
 let angle = 0; //used to calculate angle of player for use in movement
 let hue = 0; //colours
 let frame = 0; //keeps track of frame count in animation, mainly used to set interval in which obstacles appear
-let score = 0; //Willavoids obstacles
+let score = 0; //Will increae as player  avoids obstacles
 let gamespeed = 2; //speed at increase when player  which the obstacles, background etc. move at, can be changed by difficulty settings. also allows for paralax effects to be made easily
 
 function animate() {
@@ -16,6 +16,7 @@ function animate() {
     handleObstacles();
     bird.update();
     bird.draw();
+    scoreCounter();
     handleParticles();
     handleCollisions();
     if (handleCollisions()) return;
@@ -48,7 +49,17 @@ function handleCollisions() {
                 (bird.y > canvas.height - obstaclesArray[i].bottom &&
                     bird.y + bird.height < canvas.height))) { //collision detection
                         ctx.drawImage(bang, bird.x, bird.y, 50, 50)
+                        ctx.font = '25px Georgia';
+                        ctx.fillStyle = 'black';
+                        ctx.fillText('Game Over, your score is ' + score, 160, canvas.height/2 - 10);
                         return true;
                     }
     }
+}
+
+function scoreCounter(){
+    ctx.fillStyle = 'red';
+    ctx.font = '90px Georgia';
+    ctx.strokeText(score, 450, 70);
+    ctx.fillText(score, 450, 70);
 }
