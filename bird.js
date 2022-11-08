@@ -5,7 +5,7 @@ class Bird {
         this.vy = 0; //y velocity
         this.width = 20;
         this.height = 20;
-        this.weight = 1; //force that pulls player down when player isn't 'flapping'
+        this.weight = .5; //force that pulls player down when player isn't 'flapping'
     }
     update() {
         let curve = Math.sin(angle) * 20;
@@ -24,11 +24,11 @@ class Bird {
         if (spacePressed && this.y > this.height * 3) this.flap();
     } //calculate position and velocity of player character at every 
     draw() {
-        ctx.fillStyle = 'red'; //red player
+        ctx.fillStyle = 'hsla(' + hue + ',100%, 50%, 1'; //red player
         ctx.fillRect(this.x, this.y, this.width, this.height); // rectangle with x position, y position, width and height
     }
     flap() {
-        this.vy -= 2;
+        this.vy -= 1;
     } //will push player upwards when called
 }
 const bird = new Bird();

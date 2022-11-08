@@ -13,6 +13,7 @@ let gamespeed = 2; //speed at increase when player  which the obstacles, backgro
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     //ctx.fillRect(10, 10, 50, 50);
+    handleObstacles();
     bird.update();
     bird.draw();
     requestAnimationFrame(animate);

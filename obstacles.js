@@ -6,7 +6,7 @@ class Obstacle {
         this.bottom = (Math.random() * canvas.height / 3) + 20; //height of bottom obstacle
         this.x = canvas.width; //spawns obstacles just offscreen to the right
         this.width = 20; // width of the obstacles
-        this.color = 'hsl(' + hue + '100%, 50%'; //color of the obstacles, rainbow
+        this.color = 'hsla(' + hue + ',100%, 50%, 1)'; //color of the obstacles, rainbow
     }
     draw(){
         ctx.fillStyle = this.color;
@@ -20,12 +20,12 @@ class Obstacle {
 }
 
 function handleObstacles(){
-    if(frame%50 === 0){ 
+    if(frame%50 ===0){ 
         obstaclesArray.unshift(new Obstacle); // adds new obstacle to the obstacle array
 
     };//if statement for every 50 frames
-    for (i = 0; i < obstaclesArray.length, i++;){
-        obstaclesArray.update();
+    for (let i = 0; i < obstaclesArray.length; i++){
+        obstaclesArray[i].update();
     }; //updates all obstacles
     if (obstaclesArray.length > 20){
         obstaclesArray.pop(obstaclesArray[0]);
