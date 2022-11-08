@@ -13,12 +13,14 @@ let gamespeed = 2; //speed at increase when player  which the obstacles, backgro
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     //ctx.fillRect(10, 10, 50, 50);
+    handleObstacles();
     bird.update();
     bird.draw();
     requestAnimationFrame(animate);
     angle += 0.2;
     handleParticles();
     hue++;
+    frame++
 } //clears canvas at end of every frame, recurs by calling itself at end of the function
 
 animate();
@@ -32,3 +34,7 @@ window.addEventListener('keydown', function (e) {
 window.addEventListener('keyup', function (e) {
     if (e.code === 'Space') spacePressed = false;
 });
+
+function hi(){
+    alert('hi')
+}
