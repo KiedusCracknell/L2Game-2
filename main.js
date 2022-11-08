@@ -35,6 +35,17 @@ window.addEventListener('keyup', function (e) {
     if (e.code === 'Space') spacePressed = false;
 });
 
-function hi(){
-    alert('hi')
+const bang = new Image();
+bang.src = 'sprites/bang.png';
+
+function handleCollisions() {
+    for (let i = 0; i < obstaclesArray.length; i++) {
+        if (bird.x < obstaclesArray[i].x + obstaclesArray[i].width &&
+            bird.x + bird.width > obstaclesArray[i].x &&
+            ((bird.y < 0 + obstaclesArray[i].top && bird.y + bird.height > 0) ||
+                (bird.y > canvas.height - obstaclesArray[i].bottom &&
+                    bird.y + bird.height < canvas.height))) { //collision detection
+
+                    }
+    }
 }
