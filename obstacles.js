@@ -18,3 +18,16 @@ class Obstacle {
         this.draw();
     }
 }
+
+function handleObstacles(){
+    if(frame%50 === 0){ 
+        obstaclesArray.unshift(new Obstacle); // adds new obstacle to the obstacle array
+
+    };//if statement for every 50 frames
+    for (i = 0; i < obstaclesArray.length, i++;){
+        obstaclesArray.update();
+    }; //updates all obstacles
+    if (obstaclesArray.length > 20){
+        obstaclesArray.pop(obstaclesArray[0]);
+    } //removes the oldest obstacle every time there is more than 20 created
+};
