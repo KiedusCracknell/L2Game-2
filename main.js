@@ -8,7 +8,7 @@ let angle = 0; //used to calculate angle of player for use in movement
 let hue = 0; //colours
 let frame = 0; //keeps track of frame count in animation, mainly used to set interval in which obstacles appear
 let score = 0; //Will increae as player  avoids obstacles
-let gamespeed = 2; //speed at increase when player  which the obstacles, background etc. move at, can be changed by difficulty settings. also allows for paralax effects to be made easily
+let gamespeed = 2 ; //speed at increase when player  which the obstacles, background etc. move at, can be changed by difficulty settings. also allows for paralax effects to be made easily
 
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -58,8 +58,25 @@ function handleCollisions() {
 }
 
 function scoreCounter(){
-    ctx.fillStyle = 'red';
+    const gradient = ctx.createLinearGradient(0, 0, 0, 70);
+    gradient.addColorStop('0.4', '#fff')
+    gradient.addColorStop('0.5', '#000')
+    gradient.addColorStop('0.55', '#4040ff')
+    gradient.addColorStop('0.6', '#000')
+    gradient.addColorStop('0.9', '#fff')
+
+    ctx.fillStyle = gradient;
     ctx.font = '90px Georgia';
     ctx.strokeText(score, 450, 70);
     ctx.fillText(score, 450, 70);
+}
+
+function easy(){
+    gamespeed = 3;
+}
+function medium(){
+    gamespeed = 5;
+}
+function hard(){
+    gamespeed = 7;
 }

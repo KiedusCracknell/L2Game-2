@@ -7,6 +7,7 @@ class Obstacle {
         this.x = canvas.width; //spawns obstacles just offscreen to the right
         this.width = 20; // width of the obstacles
         this.color = 'hsla(' + hue + ',100%, 50%, 1)'; //color of the obstacles, rainbow
+        this.counted = false; //changes to true for each obstacle once the player has passed it
     }
     draw(){
         ctx.fillStyle = this.color;
@@ -15,12 +16,16 @@ class Obstacle {
     }
     update(){
         this.x -= gamespeed; //moves the obstacles to the left, dependent on gamespeed
+        if (!this.counted && this.x < bird.x){
+            score++;
+            this.counted = true;
+        }
         this.draw();
     }
 }
 
 function handleObstacles(){
-    if(frame%100 ===0){ 
+    if(frame%50 ===0){ 
         obstaclesArray.unshift(new Obstacle); // adds new obstacle to the obstacle array
 
     };//if statement for every 50 frames
