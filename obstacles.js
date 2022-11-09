@@ -25,7 +25,7 @@ class Obstacle {
 }
 
 function handleObstacles(){
-    if(frame%50 ===0){ 
+    if(frame%frequency ===0){ 
         obstaclesArray.unshift(new Obstacle); // adds new obstacle to the obstacle array
 
     };//if statement for every 50 frames

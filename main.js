@@ -9,10 +9,22 @@ let hue = 0; //colours
 let frame = 0; //keeps track of frame count in animation, mainly used to set interval in which obstacles appear
 let score = 0; //Will increae as player  avoids obstacles
 let gamespeed = 2 ; //speed at increase when player  which the obstacles, background etc. move at, can be changed by difficulty settings. also allows for paralax effects to be made easily
+let frequency = 60;//frequency of obstacles
+
+const background = new Image();
+background.src = 'sprites/bg.jpg';
+const BG = {
+    x1: 0,
+    x2: canvas.width,
+    y: 0, 
+    width: canvas.width ,
+    height: canvas.height
+}
 
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     //ctx.fillRect(10, 10, 50, 50);
+    handleBackground();
     handleObstacles();
     bird.update();
     bird.draw();
@@ -50,11 +62,20 @@ function handleCollisions() {
                     bird.y + bird.height < canvas.height))) { //collision detection
                         ctx.drawImage(bang, bird.x, bird.y, 50, 50)
                         ctx.font = '25px Georgia';
-                        ctx.fillStyle = 'black';
+                        ctx.fillStyle = 'white';
                         ctx.fillText('Game Over, your score is ' + score, 160, canvas.height/2 - 10);
                         return true;
                     }
     }
+}
+
+function handleBackground(){
+    if(BG.x1 <= -BG.width + gamespeed) BG.x1 = BG.width;
+    else BG.x1 -= gamespeed;
+    if (BG.x2 <= -BG.width + gamespeed) BG.x2 = BG.width;
+    else BG.x2 -= gamespeed;
+    ctx.drawImage(background, BG.x1, BG.y, BG.width, BG.height); 
+    ctx.drawImage(background, BG.x2, BG.y, BG.width, BG.height); 
 }
 
 function scoreCounter(){
@@ -73,10 +94,9 @@ function scoreCounter(){
 
 function easy(){
     gamespeed = 3;
-}
-function medium(){
-    gamespeed = 5;
+    frequency = 60;
 }
 function hard(){
-    gamespeed = 7;
+    gamespeed = 6;
+    frequency = 25;
 }
