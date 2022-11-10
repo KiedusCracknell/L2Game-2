@@ -8,7 +8,7 @@ let angle = 0; //used to calculate angle of player for use in movement
 let hue = 0; //colours
 let frame = 0; //keeps track of frame count in animation, mainly used to set interval in which obstacles appear
 let score = 0; //Will increae as player  avoids obstacles
-let gamespeed = 3; //speed at increase when player  which the obstacles, background etc. move at, can be changed by difficulty settings. also allows for paralax effects to be made easily
+let gamespeed = 3; //speed at which the obstacles, background etc. move at, can be changed by difficulty settings. also allows for paralax effects to be made easily
 let frequency = 0;//frequency of obstacles
 
 let name = prompt('whats your name?'); // players name
@@ -68,6 +68,8 @@ function handleCollisions() {
                         ctx.font = '25px Georgia';
                         ctx.fillStyle = 'white';
                         ctx.fillText('Game Over ' + name + ', your score is ' + score, 160, canvas.height/2 - 10);
+                        document.getElementById('restartButton').style.display = 'block';
+                        console.log('hi')
                         dead = true;
                     }
     }
@@ -110,6 +112,7 @@ function restart(){
     frequency = 0;
     obstaclesArray.length = 0;
     score = 0;
+    document.getElementById('restartButton').style.display = 'none';
     dead = false;
     animate()
     }
