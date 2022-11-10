@@ -30,7 +30,7 @@ class Bird {
     } //calculate position and velocity of player character at every 
     draw() {
         ctx.fillStyle = 'hsla(' + hue + ',100%, 50%, 1'; //red player
-        // ctx.fillRect(this.x, this.y, this.width, this.height); // rectangle with x position, y position, width and height
+        //ctx.fillRect(this.x, this.y, this.width, this.height); // rectangle with x position, y position, width and height
         ctx.drawImage(dragonSprite, this.frameX * this.originalWidth, 0, this.originalWidth, this.originalHeight, this.x-this.width/3, this.y-this.height/3, bird.width*1.5, bird.height*1.5);
     }
     flap() {

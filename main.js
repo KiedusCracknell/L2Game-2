@@ -8,8 +8,11 @@ let angle = 0; //used to calculate angle of player for use in movement
 let hue = 0; //colours
 let frame = 0; //keeps track of frame count in animation, mainly used to set interval in which obstacles appear
 let score = 0; //Will increae as player  avoids obstacles
-let gamespeed = 2 ; //speed at increase when player  which the obstacles, background etc. move at, can be changed by difficulty settings. also allows for paralax effects to be made easily
-let frequency = 60;//frequency of obstacles
+let gamespeed = 3; //speed at increase when player  which the obstacles, background etc. move at, can be changed by difficulty settings. also allows for paralax effects to be made easily
+let frequency = 0;//frequency of obstacles
+
+let name = prompt('whats your name?'); // players name
+let dead = false; //true if dead
 
 const background = new Image();
 background.src = 'sprites/bg.jpg';
@@ -21,6 +24,7 @@ const BG = {
     height: canvas.height
 }
 
+
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     //ctx.fillRect(10, 10, 50, 50);
@@ -31,7 +35,7 @@ function animate() {
     scoreCounter();
     handleParticles();
     handleCollisions();
-    if (handleCollisions()) return;
+    if (dead) return;
     requestAnimationFrame(animate);
     angle += 0.2;
     hue++;
@@ -58,13 +62,13 @@ function handleCollisions() {
         if (bird.x < obstaclesArray[i].x + obstaclesArray[i].width &&
             bird.x + bird.width > obstaclesArray[i].x &&
             ((bird.y < 0 + obstaclesArray[i].top && bird.y + bird.height > 0) ||
-                (bird.y > canvas.height - obstaclesArray[i].bottom &&
+                (bird.y + bird.height > canvas.height - obstaclesArray[i].bottom &&
                     bird.y + bird.height < canvas.height))) { //collision detection
                         ctx.drawImage(bang, bird.x, bird.y, 50, 50)
                         ctx.font = '25px Georgia';
                         ctx.fillStyle = 'white';
-                        ctx.fillText('Game Over, your score is ' + score, 160, canvas.height/2 - 10);
-                        return true;
+                        ctx.fillText('Game Over ' + name + ', your score is ' + score, 160, canvas.height/2 - 10);
+                        dead = true;
                     }
     }
 }
@@ -99,4 +103,14 @@ function easy(){
 function hard(){
     gamespeed = 6;
     frequency = 25;
+}
+function restart(){
+    if(dead == true){
+    gamespeed = 3;
+    frequency = 0;
+    obstaclesArray.length = 0;
+    score = 0;
+    dead = false;
+    animate()
+    }
 }
