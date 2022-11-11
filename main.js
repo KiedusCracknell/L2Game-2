@@ -8,11 +8,13 @@ let angle = 0; //used to calculate angle of player for use in movement
 let hue = 0; //colours
 let frame = 0; //keeps track of frame count in animation, mainly used to set interval in which obstacles appear
 let score = 0; //Will increae as player  avoids obstacles
-let gamespeed = 3; //speed at which the obstacles, background etc. move at, can be changed by difficulty settings. also allows for paralax effects to be made easily
+let gamespeed = 0; //speed at which the obstacles, background etc. move at, can be changed by difficulty settings. also allows for paralax effects to be made easily
 let frequency = 0;//frequency of obstacles
 
-let name = prompt('whats your name?'); // players name
+var name = prompt('what is your name?'); // players name
+alert('the game starts when you choose a difficulty')
 let dead = false; //true if dead
+var starting = true;
 
 const background = new Image();
 background.src = 'sprites/bg.jpg';
@@ -24,10 +26,9 @@ const BG = {
     height: canvas.height
 }
 
-
 function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    //ctx.fillRect(10, 10, 50, 50);
+    ctx.clearRect(0, 0, canvas.width, canvas.height, 'grey');
+    ctx.fillRect(10, 10, 50, 50);
     handleBackground();
     handleObstacles();
     bird.update();
@@ -101,12 +102,21 @@ function scoreCounter(){
 function easy(){
     gamespeed = 3;
     frequency = 60;
+    document.getElementById('difficultyButton').style.display = 'none';
+}
+function medium(){
+    gamespeed = 5;
+    frequency = 35;
+    document.getElementById('difficultyButton').style.display = 'none';
 }
 function hard(){
-    gamespeed = 6;
+    gamespeed = 7;
     frequency = 25;
+    document.getElementById('difficultyButton').style.display = 'none';
+
 }
 function restart(){
+    document.getElementById('difficultyButton').style.display = 'block';
     if(dead == true){
     gamespeed = 3;
     frequency = 0;

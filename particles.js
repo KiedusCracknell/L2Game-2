@@ -9,7 +9,7 @@ class Particle {
         this.color = 'hsla(' + hue + ',100%, 50%, 0.8'; // cycles particles through many colours
     }
     update() {
-        this.x -= gamespeed;//moves the particles to the left as the game scrolls
+        this.x -= gamespeed + 0.2;//moves the particles to the left as the game scrolls
         this.y += this.speedY;//moves the particles up and down slightly and spead due to speedY being random
     } // calculates each particles position each frame
     draw() {
