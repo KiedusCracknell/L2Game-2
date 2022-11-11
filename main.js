@@ -9,9 +9,14 @@ let hue = 0; //colours
 let frame = 0; //keeps track of frame count in animation, mainly used to set interval in which obstacles appear
 let score = 0; //Will increae as player  avoids obstacles
 let gamespeed = 0; //speed at which the obstacles, background etc. move at, can be changed by difficulty settings. also allows for paralax effects to be made easily
-let frequency = 0;//frequency of obstacles
+let frequency = 0; //frequency of obstacles
 
-var name = prompt('what is your name?'); // players name
+var user;
+
+do {
+    user = prompt('what is your name?'); // players name
+} while (user == '' || user == null); //prompts user until they enter a name
+
 alert('the game starts when you choose a difficulty')
 let dead = false; //true if dead
 var starting = true;
@@ -21,8 +26,8 @@ background.src = 'sprites/bg.jpg';
 const BG = {
     x1: 0,
     x2: canvas.width,
-    y: 0, 
-    width: canvas.width ,
+    y: 0,
+    width: canvas.width,
     height: canvas.height
 }
 
@@ -65,27 +70,27 @@ function handleCollisions() {
             ((bird.y < 0 + obstaclesArray[i].top && bird.y + bird.height > 0) ||
                 (bird.y + bird.height > canvas.height - obstaclesArray[i].bottom &&
                     bird.y + bird.height < canvas.height))) { //collision detection
-                        ctx.drawImage(bang, bird.x, bird.y, 50, 50)
-                        ctx.font = '25px Georgia';
-                        ctx.fillStyle = 'white';
-                        ctx.fillText('Game Over ' + name + ', your score is ' + score, 160, canvas.height/2 - 10);
-                        document.getElementById('restartButton').style.display = 'block';
-                        console.log('hi')
-                        dead = true;
-                    }
+            ctx.drawImage(bang, bird.x, bird.y, 50, 50)
+            ctx.font = '25px Georgia';
+            ctx.fillStyle = 'white';
+            ctx.fillText('Game Over ' + user + ', your score is ' + score, 160, canvas.height / 2 - 10);
+            document.getElementById('restartButton').style.display = 'block';
+            console.log('hi')
+            dead = true;
+        }
     }
 }
 
-function handleBackground(){
-    if(BG.x1 <= -BG.width + gamespeed) BG.x1 = BG.width;
+function handleBackground() {
+    if (BG.x1 <= -BG.width + gamespeed) BG.x1 = BG.width;
     else BG.x1 -= gamespeed;
     if (BG.x2 <= -BG.width + gamespeed) BG.x2 = BG.width;
     else BG.x2 -= gamespeed;
-    ctx.drawImage(background, BG.x1, BG.y, BG.width, BG.height); 
-    ctx.drawImage(background, BG.x2, BG.y, BG.width, BG.height); 
+    ctx.drawImage(background, BG.x1, BG.y, BG.width, BG.height);
+    ctx.drawImage(background, BG.x2, BG.y, BG.width, BG.height);
 }
 
-function scoreCounter(){
+function scoreCounter() {
     const gradient = ctx.createLinearGradient(0, 0, 0, 70);
     gradient.addColorStop('0.4', '#fff')
     gradient.addColorStop('0.5', '#000')
@@ -99,31 +104,34 @@ function scoreCounter(){
     ctx.fillText(score, 450, 70);
 }
 
-function easy(){
+function easy() {
     gamespeed = 3;
     frequency = 60;
     document.getElementById('difficultyButton').style.display = 'none';
 }
-function medium(){
+
+function medium() {
     gamespeed = 5;
     frequency = 35;
     document.getElementById('difficultyButton').style.display = 'none';
 }
-function hard(){
+
+function hard() {
     gamespeed = 7;
     frequency = 25;
     document.getElementById('difficultyButton').style.display = 'none';
 
 }
-function restart(){
+
+function restart() {
     document.getElementById('difficultyButton').style.display = 'block';
-    if(dead == true){
-    gamespeed = 3;
-    frequency = 0;
-    obstaclesArray.length = 0;
-    score = 0;
-    document.getElementById('restartButton').style.display = 'none';
-    dead = false;
-    animate()
+    if (dead == true) {
+        gamespeed = 3;
+        frequency = 0;
+        obstaclesArray.length = 0;
+        score = 0;
+        document.getElementById('restartButton').style.display = 'none';
+        dead = false;
+        animate()
     }
 }
